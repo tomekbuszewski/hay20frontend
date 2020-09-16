@@ -1,0 +1,1 @@
+export { LargeText } from "./LargeText";

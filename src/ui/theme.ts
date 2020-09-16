@@ -3,7 +3,6 @@ import { rem } from "@ui/helpers";
 export const theme = {
   colors: {
     background: "#2E3338",
-    base: "#D3D0CB",
     albumBackground: "#121416",
     textPrimary: "#D3D0CB",
     textSecondary: "#B4AFA7",
