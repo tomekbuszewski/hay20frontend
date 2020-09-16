@@ -24,6 +24,25 @@ export const transition = (
   };
 };
 
+interface IBoxShadowConfig {
+  x?: string;
+  y?: string;
+  blur?: string;
+  spread?: string;
+}
+
+export const boxShadow = (color: string, config?: IBoxShadowConfig) => {
+  const { x, y, blur, spread } = {
+    x: 0,
+    y: rem(4),
+    blur: rem(16),
+    spread: 0,
+    ...config,
+  };
+
+  return `${x} ${y} ${blur} ${spread} ${color}`;
+};
+
 const getProp = (obj: any, input: string): any => {
   return input.split(".").reduce((acc, curr) => {
     return acc ? acc[curr] : undefined;

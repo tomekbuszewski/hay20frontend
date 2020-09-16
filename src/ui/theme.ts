@@ -10,10 +10,12 @@ export const theme = {
     accentLight: "#197278",
     spotify: "#00D95A",
     rym: "#2067B4",
+    qobuz: "#000",
   },
   consts: {
     borderRadius: rem(8),
     cover: rem(80),
+    icon: rem(24),
   },
   margins: {
     horizontal: rem(16),
