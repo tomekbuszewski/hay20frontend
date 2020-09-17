@@ -9,9 +9,10 @@ import { BaseProps as Props } from "./HumongousText.types";
 import styled from "styled-components";
 import { colorGetter, fontFaceGetter, fontSizeGetter } from "@ui/helpers";
 
-const HumongousText: React.FunctionComponent<Props> = styled.span`
+const HumongousText = styled.span<Props>`
   font-family: ${fontFaceGetter("primary")};
   font-size: ${fontSizeGetter("humongous")};
+  line-height: 1;
 
   color: ${colorGetter("textPrimary")};
 

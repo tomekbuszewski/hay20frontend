@@ -13,14 +13,14 @@ import { Image } from "@ui/Atoms";
 const Cover: React.FunctionComponent<Props> = ({
   cover,
   artist,
-  album,
+  title,
   ...rest
 }) => {
-  const title = `${artist} – ${album}`;
+  const imgTitle = `${artist} – ${title}`;
 
   return (
     <StyledCover {...rest}>
-      {cover && <Image src={cover} title={title} />}
+      {cover && <Image src={cover} title={imgTitle} />}
     </StyledCover>
   );
 };

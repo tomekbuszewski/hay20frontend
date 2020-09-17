@@ -8,7 +8,7 @@ import { BaseProps as Props } from "./Icon.types";
 import {
   boxShadow,
   colorGetter,
-  constsGetter,
+  constGetter,
   marginGetter,
   rem,
   transition,
@@ -31,9 +31,10 @@ export const baseStyle = (color: keyof typeof theme.colors) => css`
 
 const StyledIcon = styled.i<Props>`
   display: block;
+  cursor: pointer;
 
-  width: ${constsGetter("icon")};
-  height: ${constsGetter("icon")};
+  width: ${constGetter("icon")};
+  height: ${constGetter("icon")};
 
   margin-right: ${marginGetter("horizontal")};
 

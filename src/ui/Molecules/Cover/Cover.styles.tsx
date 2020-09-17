@@ -4,16 +4,16 @@
  */
 
 import styled from "styled-components";
-import { colorGetter, constsGetter } from "@ui/helpers";
+import { colorGetter, constGetter } from "@ui/helpers";
 
 const StyledCover = styled.figure`
-  border-radius: ${constsGetter("borderRadius")};
+  border-radius: ${constGetter("borderRadius")};
   background: ${colorGetter("background")};
 
   margin: 0;
   padding: 0;
-  width: ${constsGetter("cover")};
-  height: ${constsGetter("cover")};
+  width: ${constGetter("cover")};
+  height: ${constGetter("cover")};
 
   overflow: hidden;
   position: relative;
@@ -25,8 +25,8 @@ const StyledCover = styled.figure`
 
     transform: translate(-50%, -50%);
 
-    width: ${constsGetter("cover")};
-    height: ${constsGetter("cover")};
+    width: ${constGetter("cover")};
+    height: ${constGetter("cover")};
   }
 `;
 

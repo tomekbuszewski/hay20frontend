@@ -5,15 +5,22 @@
 
 import * as React from "react";
 import styled from "styled-components";
+import { ellipsis } from "polished";
 
-import { BaseProps as Props } from "./LargeText.types";
-import { colorGetter, fontFaceGetter, fontSizeGetter } from "@ui/helpers";
+import { colorGetter, fontFaceGetter, fontSizeGetter, rem } from "@ui/helpers";
 
-const LargeText: React.FunctionComponent<Props> = styled.h2`
+const LargeText = styled.h2<{
+  withEllipsis?: boolean;
+}>`
   font-family: ${fontFaceGetter("primary")};
   font-size: ${fontSizeGetter("large")};
+  line-height: 1.25;
 
   color: ${colorGetter("textPrimary")};
+
+  margin: 0;
+
+  ${({ withEllipsis }) => withEllipsis && ellipsis(rem(172))};
 `;
 
 export { LargeText };

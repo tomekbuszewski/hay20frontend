@@ -2,7 +2,9 @@ import { rem } from "@ui/helpers";
 
 export const theme = {
   colors: {
+    shadow: "#000",
     background: "#2E3338",
+    toggler: "#252628",
     albumBackground: "#121416",
     textPrimary: "#D3D0CB",
     textSecondary: "#B4AFA7",
@@ -18,8 +20,9 @@ export const theme = {
     icon: rem(24),
   },
   margins: {
+    small: rem(8),
     horizontal: rem(16),
-    vertical: rem(24),
+    vertical: rem(12),
     spacious: rem(32),
   },
   animations: {

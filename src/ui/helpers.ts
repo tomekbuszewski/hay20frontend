@@ -63,5 +63,5 @@ export const fontSizeGetter = (key: keyof typeof theme.font.sizes) =>
   getter<keyof typeof theme.font.sizes>(key, "font.sizes");
 export const fontFaceGetter = (key: keyof typeof theme.font.faces) =>
   getter<keyof typeof theme.font.faces>(key, "font.faces");
-export const constsGetter = (key: keyof typeof theme.consts) =>
+export const constGetter = (key: keyof typeof theme.consts) =>
   getter<keyof typeof theme.consts>(key, "consts");
