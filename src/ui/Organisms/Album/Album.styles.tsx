@@ -73,7 +73,7 @@ const StyledAlbumInfoWrapper = styled.div<{ isActive?: boolean }>`
   transition: ${transition(["transform"])};
   transition-delay: ${(props) => props.theme.animations.durations.short};
 
-  transform: translateY(${({ isActive }) => (isActive ? rem(0) : rem(-21))});
+  transform: translateY(${({ isActive }) => (isActive ? rem(0) : rem(-19))});
 `;
 
 const StyleAlbumMetaWrapper = styled(StyledAlbumInfoWrapper)<{
@@ -156,14 +156,21 @@ const StyledAlbum = styled.li<ViewProps>`
   border-right-color: ${({ isListened }) =>
     isListened ? colorGetter("accentLight") : colorGetter("accentDark")};
 
-  margin: ${marginGetter("vertical")} auto;
+  margin: ${({ isActive }) =>
+    isActive
+      ? css`
+          ${marginGetter("vertical")} auto
+        `
+      : css`
+          ${marginGetter("vertical")} auto ${marginGetter("spacious")}
+        `};
   padding: ${rem(16)};
   max-width: calc(100vw - ${rem(48)});
   height: ${({ isActive }) => (isActive ? rem(152) : constGetter("cover"))};
   position: relative;
 
   transition: ${transition(
-    ["box-shadow", "height", "border", "transform"],
+    ["box-shadow", "height", "border", "transform", "margin"],
     "long",
   )};
 

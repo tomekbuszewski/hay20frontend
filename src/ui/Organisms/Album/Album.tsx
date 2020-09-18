@@ -19,16 +19,10 @@ import { LargeText, SmallText, Icon } from "@ui/Atoms";
 import { Spotify, Rym, Qobuz } from "@ui/Atoms/Icon/Icon.parts";
 
 const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
-  const {
-    isActive,
-    isListened,
-    isDragging,
-    isToday,
-    album,
-    listenOn,
-    listPosition,
-  } = props;
+  const { view, album, list } = props;
+  const { isActive, isListened, isDragging, isToday } = view;
   const { artist, title, cover, qobuz, rym, spotify } = album;
+  const { listenOn, listPosition } = list;
 
   return (
     <StyledAlbum

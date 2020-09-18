@@ -16,8 +16,13 @@ export interface ViewProps {
   isToday?: boolean;
 }
 
-export interface BaseProps extends HTMLAttributes<HTMLElement> {
-  album: IAlbum;
+interface IListInfo {
   listPosition: number;
   listenOn: Date;
+}
+
+export interface BaseProps extends HTMLAttributes<HTMLElement> {
+  album: IAlbum;
+  list: IListInfo;
+  view: ViewProps;
 }
