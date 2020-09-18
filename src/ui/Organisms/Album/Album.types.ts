@@ -13,6 +13,7 @@ export interface ViewProps {
   isActive?: boolean;
   isListened?: boolean;
   isDragging?: boolean;
+  isToday?: boolean;
 }
 
 export interface BaseProps extends HTMLAttributes<HTMLElement> {

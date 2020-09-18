@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { boolean, text } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 
 import { Album } from "./";
 
@@ -19,11 +19,10 @@ export const Normal = () => (
     isActive={boolean("Active", false)}
     isListened={boolean("Listened", false)}
     isDragging={boolean("Dragging", false)}
+    isToday={boolean("Today", false)}
     listPosition={76}
     listenOn={new Date()}
-  >
-    {text("Example text", "Hello")}
-  </Album>
+  />
 );
 
 export default {

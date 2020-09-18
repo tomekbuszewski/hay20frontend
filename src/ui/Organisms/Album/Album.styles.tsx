@@ -158,7 +158,7 @@ const StyledAlbum = styled.li<ViewProps>`
 
   margin: ${marginGetter("vertical")} auto;
   padding: ${rem(16)};
-  max-width: calc(100vw - ${rem(32)});
+  max-width: calc(100vw - ${rem(48)});
   height: ${({ isActive }) => (isActive ? rem(152) : constGetter("cover"))};
   position: relative;
 
@@ -193,6 +193,18 @@ const StyledAlbum = styled.li<ViewProps>`
         transform: translateY(-${rem(32)});
       `}
   }
+
+  ${({ isToday, isListened, isActive }) => {
+    const shadowColor = isListened ? "accentLight" : "accentDark";
+    const shadowConfig = isActive ? { y: rem(8), blur: rem(32) } : {};
+
+    if (isToday) {
+      return css`
+        box-shadow: ${(props) =>
+          boxShadow(rgba(colorGetter(shadowColor)(props), 0.5), shadowConfig)};
+      `;
+    }
+  }};
 
   &:hover {
     box-shadow: ${(props) =>

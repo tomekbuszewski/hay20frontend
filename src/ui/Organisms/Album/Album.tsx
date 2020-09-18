@@ -23,6 +23,7 @@ const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
     isActive,
     isListened,
     isDragging,
+    isToday,
     album,
     listenOn,
     listPosition,
@@ -34,6 +35,7 @@ const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
       isActive={isActive}
       isListened={isListened}
       isDragging={isDragging}
+      isToday={isToday}
     >
       <Cover cover={cover} artist={artist} title={title} />
       <StyledAlbumInfoWrapper isActive={isActive}>
