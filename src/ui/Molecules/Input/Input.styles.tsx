@@ -107,6 +107,13 @@ const StyledInput = styled.input`
   ::placeholder {
     color: ${(props) => rgba(colorGetter("counter")(props), 0.5)};
   }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-internal-autofill-selected {
+    background: black !important;
+  }
 `;
 
 export { StyledInput, StyledIcon, StyledWrapper, svgStyles };

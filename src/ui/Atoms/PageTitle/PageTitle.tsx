@@ -9,14 +9,17 @@ import {
   fontFaceGetter,
   fontSizeGetter,
   marginGetter,
+  rem,
 } from "@ui/helpers";
 
 const PageTitle = styled.h2`
   font-family: ${fontFaceGetter("primary")};
   font-size: ${fontSizeGetter("title")};
+  line-height: ${rem(32)};
 
   color: ${colorGetter("counter")};
 
+  margin-top: ${rem(80)};
   margin-bottom: ${marginGetter("horizontal")};
 `;
 

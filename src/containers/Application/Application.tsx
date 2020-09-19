@@ -12,7 +12,8 @@ import store from "@redux/store";
 import { ErrorBoundary } from "@containers/ErrorBoundary";
 
 import { Routes } from "@containers/Routes";
-import { Navigation } from "@containers/Navigation";
+
+const siteName = "Hundred a Year";
 
 const BareApplication = () => (
   <ErrorBoundary>
@@ -20,10 +21,11 @@ const BareApplication = () => (
       <ThemeProvider theme={theme}>
         <Router>
           <React.Fragment>
-            <Helmet titleTemplate="%s — my site" defaultTitle="my site" />
+            <Helmet
+              titleTemplate={`%s — ${siteName}`}
+              defaultTitle={siteName}
+            />
             <GlobalStyle />
-            <Navigation />
-            <hr />
             <Routes />
           </React.Fragment>
         </Router>

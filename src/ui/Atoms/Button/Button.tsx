@@ -27,10 +27,21 @@ const Button = styled.button<Props>`
   line-height: ${rem(36)};
   font-size: ${fontSizeGetter("small")};
   font-family: ${fontFaceGetter("primary")};
+  font-weight: 800;
 
   padding: 0 ${marginGetter("horizontal")};
 
   height: ${rem(36)};
+
+  ${({ toRight }) =>
+    toRight &&
+    css`
+      margin-left: auto;
+    `};
+
+  button + & {
+    margin-left: ${marginGetter("horizontal")};
+  }
 
   &:focus,
   &:active {

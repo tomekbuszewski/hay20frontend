@@ -8,13 +8,7 @@ import * as React from "react";
 import { StyledInput, StyledWrapper, StyledIcon } from "./Input.styles";
 import { BaseProps as Props } from "./Input.types";
 
-const Input: React.FunctionComponent<Props> = ({
-  children,
-  icon,
-  name,
-  noMargin,
-  ...props
-}) => {
+const Input = ({ children, icon, name, noMargin, ...props }: Props) => {
   return (
     <StyledWrapper noMargin={noMargin}>
       {icon && <StyledIcon htmlFor={name}>{icon}</StyledIcon>}

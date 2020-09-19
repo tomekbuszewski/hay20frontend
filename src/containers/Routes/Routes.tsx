@@ -1,16 +1,30 @@
 import * as React from "react";
-import { Switch, Route } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  withRouter,
+  RouteComponentProps,
+} from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { index, about, users } from "@config/routes";
+import { pages } from "@config/routes";
+import { Main } from "@ui/Atoms";
 
-const Routes: React.FunctionComponent = () => (
-  <main>
-    <Switch>
-      <Route {...index} />
-      <Route {...about} />
-      <Route {...users} />
-    </Switch>
-  </main>
-);
+const Routes = withRouter(({ location }: RouteComponentProps) => {
+  console.log(location);
+  return (
+    <Main>
+      <TransitionGroup>
+        <CSSTransition key={location.pathname} classNames="page" timeout={400}>
+          <Switch location={location}>
+            {pages.map((page) => (
+              <Route {...page} key={`${location.pathname}-route`} />
+            ))}
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </Main>
+  );
+});
 
 export { Routes };
