@@ -7,6 +7,8 @@ const About = loadable(() => import("@pages/About"));
 const Users = loadable(() => import("@pages/Users"));
 const Register = loadable(() => import("@pages/Register"));
 const Login = loadable(() => import("@pages/Login"));
+const ListIndex = loadable(() => import("@pages/ListIndex"));
+const SingleList = loadable(() => import("@pages/SingleList"));
 
 export enum ROUTES {
   HOME = "/",
@@ -14,6 +16,8 @@ export enum ROUTES {
   USERS = "/users",
   REGISTER = "/register",
   LOGIN = "/login",
+  LIST_INDEX = "/lists",
+  SINGLE_LIST = "/list/:id",
 }
 
 export const index: RouteProps = {
@@ -45,4 +49,23 @@ export const login: RouteProps = {
   component: Login,
 };
 
-export const pages = [index, about, users, register, login];
+export const listIndex: RouteProps = {
+  path: ROUTES.LIST_INDEX,
+  exact: true,
+  component: ListIndex,
+};
+
+export const singleList: RouteProps = {
+  path: ROUTES.SINGLE_LIST,
+  component: SingleList,
+};
+
+export const pages = [
+  index,
+  about,
+  users,
+  register,
+  login,
+  listIndex,
+  singleList,
+];

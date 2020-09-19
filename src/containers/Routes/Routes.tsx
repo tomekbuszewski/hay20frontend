@@ -1,17 +1,13 @@
 import * as React from "react";
-import {
-  Switch,
-  Route,
-  withRouter,
-  RouteComponentProps,
-} from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { pages } from "@config/routes";
 import { Main } from "@ui/Atoms";
 
-const Routes = withRouter(({ location }: RouteComponentProps) => {
-  console.log(location);
+const Routes: React.FunctionComponent = () => {
+  const location = useLocation();
+
   return (
     <Main>
       <TransitionGroup>
@@ -25,6 +21,6 @@ const Routes = withRouter(({ location }: RouteComponentProps) => {
       </TransitionGroup>
     </Main>
   );
-});
+};
 
 export { Routes };

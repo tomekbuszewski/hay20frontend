@@ -165,7 +165,7 @@ const StyledAlbum = styled.li<ViewProps>`
           ${marginGetter("vertical")} auto ${marginGetter("spacious")}
         `};
   padding: ${rem(16)};
-  max-width: calc(100vw - ${rem(48)});
+  width: 100%;
   height: ${({ isActive }) => (isActive ? rem(152) : constGetter("cover"))};
   position: relative;
 

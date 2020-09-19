@@ -25,7 +25,7 @@ const slideOutLeft = keyframes`
 
   to {
     visibility: hidden;
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, ${rem(64)}, 0);
     opacity: 0;
   }
 `;
