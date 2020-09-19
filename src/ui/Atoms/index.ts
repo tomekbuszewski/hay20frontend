@@ -9,3 +9,5 @@ export * from "./HumongousText";
 export * from "./Icon";
 
 export * from "./Button";
+
+export * from "./Form";
