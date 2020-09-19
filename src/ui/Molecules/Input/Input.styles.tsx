@@ -2,7 +2,7 @@
  * @author tomek
  * @since 2020-09-19 09:06:17
  */
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { rgba } from "polished";
 
 import {
@@ -17,10 +17,26 @@ import {
 
 import { StyledIcon as Icon } from "@ui/Atoms/Icon/Icon.styles";
 
+const svgStyles = css`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: ${rem(12)};
+  max-height: ${rem(12)};
+`;
+
 const StyledWrapper = styled.div`
   position: relative;
 
   margin-bottom: ${marginGetter("vertical")};
+
+  button {
+    position: absolute;
+    right: ${rem(2)};
+    top: ${rem(2)};
+  }
 `;
 
 const StyledIcon = styled<any>(Icon).attrs({
@@ -38,13 +54,7 @@ const StyledIcon = styled<any>(Icon).attrs({
   color: ${colorGetter("counter")};
 
   svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    max-width: ${rem(12)};
-    max-height: ${rem(12)};
+    ${svgStyles};
   }
 `;
 
@@ -99,4 +109,4 @@ const StyledInput = styled.input`
   }
 `;
 
-export { StyledInput, StyledIcon, StyledWrapper };
+export { StyledInput, StyledIcon, StyledWrapper, svgStyles };
