@@ -12,10 +12,11 @@ const Input: React.FunctionComponent<Props> = ({
   children,
   icon,
   name,
+  noMargin,
   ...props
 }) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper noMargin={noMargin}>
       {icon && <StyledIcon htmlFor={name}>{icon}</StyledIcon>}
       <StyledInput name={name} id={name} {...props} />
       {children}

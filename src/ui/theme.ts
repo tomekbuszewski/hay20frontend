@@ -42,6 +42,7 @@ export const theme = {
     sizes: {
       small: rem(12),
       large: rem(16),
+      title: rem(24),
       humongous: rem(48),
     },
     faces: {

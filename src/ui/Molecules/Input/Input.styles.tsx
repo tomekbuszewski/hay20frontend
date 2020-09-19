@@ -27,10 +27,10 @@ const svgStyles = css`
   max-height: ${rem(12)};
 `;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<{ noMargin?: boolean }>`
   position: relative;
 
-  margin-bottom: ${marginGetter("vertical")};
+  margin-bottom: ${(props) => !props.noMargin && marginGetter("vertical")};
 
   button {
     position: absolute;
