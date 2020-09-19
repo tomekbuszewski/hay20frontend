@@ -3,6 +3,7 @@ import { rem } from "@ui/helpers";
 export const theme = {
   colors: {
     shadow: "#000",
+    counter: "#F6F6F8",
     background: "#2E3338",
     toggler: "#252628",
     albumBackground: "#121416",
