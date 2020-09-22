@@ -20,14 +20,13 @@ export default function (
       if (payload) {
         return payload.reduce((acc: AlbumsReducer, item) => {
           const index = String(item.id);
-
-          if (acc.collection.indexOf(index) > -1) {
-            return acc;
-          }
+          const alreadyExists = acc.collection.indexOf(index) > -1;
 
           return {
             ...acc,
-            collection: [...acc.collection, index],
+            collection: alreadyExists
+              ? acc.collection
+              : [...acc.collection, index],
             db: { ...acc.db, [index]: item },
           };
         }, state);
