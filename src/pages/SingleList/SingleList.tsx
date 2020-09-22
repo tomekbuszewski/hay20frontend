@@ -66,8 +66,9 @@ const SingleList: React.FunctionComponent<Props> = ({
   const { listIndex } = useParams<{ listIndex: string }>();
   const {
     isLoading: isListDetailsLoading,
-    isStale: isListDetailsSuccess,
+    isSuccess: isListDetailsSuccess,
   } = useFetchDetailsQuery(Number(listIndex.split("__")[0]), addList);
+
   const { isLoading: isDetailsLoading } = useFetchAlbumsQuery(
     albumsToFetch(listIndex),
     addAlbums,
