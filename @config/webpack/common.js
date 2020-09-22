@@ -118,8 +118,6 @@ const plugins = [
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: "async",
   }),
-
-  new Dotenv(),
 ];
 
 module.exports = {

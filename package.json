@@ -15,8 +15,9 @@
     "storybook": "start-storybook -p 9001 -c ./@config/storybook",
     "test": "jest --coverage",
     "~~~~~~ BUILD COMMANDS ~~~~~~": "",
+    "assets": "cp ./assets/* ./public/assets",
     "build:dev": "NODE_ENV=development webpack",
-    "build:prod": "npm run clear-public; NODE_ENV=production webpack --mode=production"
+    "build:prod": "npm run clear-public; NODE_ENV=production webpack --mode=production && npm run assets"
   },
   "repository": {
     "type": "git",
