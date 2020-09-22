@@ -7,11 +7,22 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
-import { Button, Form, PageTitle, TransitionWrapper } from "@ui/Atoms";
-import { Input, KeyIcon, UserIcon } from "@ui/Molecules";
 import { ROUTES } from "@config/routes";
 
-const View: React.FunctionComponent = () => {
+import { Button, Form, PageTitle, TransitionWrapper } from "@ui/Atoms";
+import { Input, KeyIcon, UserIcon } from "@ui/Molecules";
+
+import { FORM_NAMES } from "./Login.typings";
+
+interface Props {
+  handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
+const View: React.FunctionComponent<Props> = ({
+  handleInput,
+  handleSubmit,
+}) => {
   const { push } = useHistory();
 
   return (
@@ -20,14 +31,20 @@ const View: React.FunctionComponent = () => {
         <title>Sign In</title>
       </Helmet>
       <PageTitle>Sign In</PageTitle>
-      <Form>
-        <Input icon={<UserIcon />} placeholder="Username" name="user" />
+      <Form onSubmit={handleSubmit}>
+        <Input
+          icon={<UserIcon />}
+          placeholder="Username"
+          name={FORM_NAMES.USER}
+          onChange={handleInput}
+        />
         <Input
           icon={<KeyIcon />}
           autoComplete="new-password"
           placeholder="Password"
           type="password"
-          name="password"
+          name={FORM_NAMES.PASS}
+          onChange={handleInput}
         />
         <div style={{ display: "flex" }}>
           <Button

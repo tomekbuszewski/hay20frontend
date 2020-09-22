@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
-import demoReducer from "./demoReducer/reducer";
+import albums from "./albums/reducer";
+import lists from "./lists/reducer";
+import user from "./user/reducer";
 
 export const reducers = {
-  demoReducer,
-};
+  albums,
 
-export type Reducers = typeof reducers;
+  lists,
+
+  user,
+};
 
 export default combineReducers(reducers);

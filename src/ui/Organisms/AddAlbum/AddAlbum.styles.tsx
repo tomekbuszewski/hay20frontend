@@ -8,6 +8,7 @@ import styled, { css, keyframes } from "styled-components";
 import { Form } from "@ui/Atoms";
 import { StyledCover as Cover } from "@ui/Molecules/Cover/Cover.styles";
 import {
+  boxShadow,
   colorGetter,
   constGetter,
   fontFaceGetter,
@@ -16,6 +17,7 @@ import {
   rem,
   transition,
 } from "@ui/helpers";
+import { rgba } from "polished";
 
 const showResults = keyframes`
   from {
@@ -95,20 +97,62 @@ const StyledResult = styled.li`
   }
 `;
 
+const StyledFormButton = styled.button<{ isActive?: boolean }>`
+  width: ${rem(48)};
+  height: ${rem(48)};
+
+  cursor: pointer;
+
+  border-radius: 100%;
+
+  border: 0;
+  background: ${colorGetter("accentDark")};
+  color: ${colorGetter("counter")};
+  box-shadow: ${(props) =>
+    boxShadow(rgba(colorGetter("shadow")(props), 0.5), {
+      y: rem(8),
+      blur: rem(16),
+    })};
+
+  position: absolute;
+  right: 0;
+  top: -${rem(64)};
+
+  transition: ${transition(["box-shadow", "transform"], "long")};
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      transform: rotate(135deg);
+      box-shadow: ${(props) =>
+        boxShadow(rgba(colorGetter("shadow")(props), 0.5), {
+          y: rem(0),
+          blur: rem(16),
+        })};
+    `};
+`;
+
 const StyledForm = styled(Form)<{ isVisible?: boolean }>`
   position: fixed;
   bottom: 0;
-  left: 5vw;
+  left: 50%;
   z-index: 99;
+
+  width: 90vw;
+  max-width: ${rem(368)};
 
   transition: ${transition(["box-shadow", "transform"])};
 
-  transform: ${({ isVisible }) => (isVisible ? "none" : "translateY(100%)")};
+  transform: ${({ isVisible }) =>
+    isVisible ? "translate(-50%, 0)" : "translate(-50%, 100%)"};
 
   border-radius: ${constGetter("borderRadius")} ${constGetter("borderRadius")} 0
     0;
-
-  width: 90vw;
 `;
 
 export {
@@ -117,4 +161,5 @@ export {
   StyledResult,
   StyledResultsHeader,
   StyledResultsWrapper,
+  StyledFormButton,
 };

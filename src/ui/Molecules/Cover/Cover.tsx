@@ -9,6 +9,7 @@ import { StyledCover } from "./Cover.styles";
 import { BaseProps as Props } from "./Cover.types";
 
 import { Image } from "@ui/Atoms";
+import { VinylIcon } from "@ui/Molecules";
 
 const Cover: React.FunctionComponent<Props> = ({
   cover,
@@ -20,7 +21,11 @@ const Cover: React.FunctionComponent<Props> = ({
 
   return (
     <StyledCover {...rest}>
-      {cover && <Image src={cover} title={imgTitle} />}
+      {cover && cover !== "[object Object]" && typeof cover === "string" ? (
+        <Image src={cover} title={imgTitle} />
+      ) : (
+        <VinylIcon />
+      )}
     </StyledCover>
   );
 };

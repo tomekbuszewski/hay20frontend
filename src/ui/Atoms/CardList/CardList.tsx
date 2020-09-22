@@ -34,6 +34,7 @@ const CardList = styled.li`
   list-style: none;
 
   position: relative;
+  cursor: pointer;
 
   height: ${rem(192)};
 

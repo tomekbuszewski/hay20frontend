@@ -5,18 +5,50 @@
 
 import * as React from "react";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
-import { TransitionWrapper, CardList } from "@ui/Atoms";
+import { TransitionWrapper, CardList, PageTitle } from "@ui/Atoms";
+import { Loader } from "@ui/Molecules";
+import { IList } from "@redux/lists/typings";
+import { ROUTES } from "@config/routes";
 
-const View: React.FunctionComponent = () => (
-  <TransitionWrapper>
-    <Helmet>
-      <title>List index</title>
-    </Helmet>
-    <ul style={{ margin: "16rem 0 0 0", padding: 0 }}>
-      <CardList>2020</CardList>
-    </ul>
-  </TransitionWrapper>
-);
+interface Props {
+  lists: IList[];
+  isLoading?: boolean;
+}
+
+const View: React.FunctionComponent<Props> = ({ lists, isLoading }) => {
+  const { push } = useHistory();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  return (
+    <TransitionWrapper>
+      <Helmet>
+        <title>List index</title>
+      </Helmet>
+      <PageTitle>Available lists</PageTitle>
+      <ul style={{ padding: 0 }}>
+        {lists.map((list) => (
+          <CardList
+            key={list.index}
+            onClick={() => {
+              const url = ROUTES.SINGLE_LIST.replace(
+                ":listIndex",
+                String(list.index),
+              );
+
+              push(url);
+            }}
+          >
+            {list.year}
+          </CardList>
+        ))}
+      </ul>
+    </TransitionWrapper>
+  );
+};
 
 export { View };

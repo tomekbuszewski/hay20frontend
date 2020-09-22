@@ -1,7 +1,6 @@
 import { AUTH_API } from "@config/api";
 import { AUTH_VERIFY_ENDPOINT } from "@config/endpoints";
 import { fetchWithCredentials } from "@services/fetchWithCredentials";
-import { QueryConfig } from "react-query";
 
 export const VALIDATION_QUERY = "VALIDATION_QUERY";
 
@@ -20,7 +19,7 @@ export const validationQuery = async (): Promise<boolean> => {
   }
 };
 
-export const validationQueryConfig: QueryConfig<any> = {
+export const validationQueryConfig = {
   retry: false,
   refetchOnWindowFocus: false,
 };

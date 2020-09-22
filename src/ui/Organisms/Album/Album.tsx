@@ -19,7 +19,7 @@ import { LargeText, SmallText, Icon } from "@ui/Atoms";
 import { Spotify, Rym, Qobuz } from "@ui/Atoms/Icon/Icon.parts";
 
 const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
-  const { view, album, list } = props;
+  const { toggle, view, album, list, ...rest } = props;
   const { isActive, isListened, isDragging, isToday } = view;
   const { artist, title, cover, qobuz, rym, spotify } = album;
   const { listenOn, listPosition } = list;
@@ -30,6 +30,7 @@ const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
       isListened={isListened}
       isDragging={isDragging}
       isToday={isToday}
+      {...rest}
     >
       <Cover cover={cover} artist={artist} title={title} />
       <StyledAlbumInfoWrapper isActive={isActive}>
@@ -47,22 +48,47 @@ const Album: React.FunctionComponent<Props & ViewProps> = (props) => {
       </StyleAlbumMetaWrapper>
       <StyledButtonWrapper isVisible={isActive}>
         {spotify && (
-          <Icon onClick={() => window.open(spotify)} as="li">
+          <Icon
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(spotify);
+            }}
+            as="li"
+          >
             <Spotify />
           </Icon>
         )}
         {qobuz && (
-          <Icon onClick={() => window.open(qobuz)} as="li">
+          <Icon
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(qobuz);
+            }}
+            as="li"
+          >
             <Qobuz />
           </Icon>
         )}
         {rym && (
-          <Icon onClick={() => window.open(rym)} as="li">
+          <Icon
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(rym);
+            }}
+            as="li"
+          >
             <Rym />
           </Icon>
         )}
       </StyledButtonWrapper>
-      <StyledToggler isActive={isListened} isVisible={isActive} />
+      <StyledToggler
+        isActive={isListened}
+        isVisible={isActive}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggle(String(album.id));
+        }}
+      />
     </StyledAlbum>
   );
 };

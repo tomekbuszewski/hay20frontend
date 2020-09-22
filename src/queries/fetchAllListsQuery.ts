@@ -11,7 +11,7 @@ export const fetchAllListsQuery = async () => {
   if (id) {
     const url = `${LISTS_API}/${LISTS_FETCH_ALL_ENDPOINT}`.replace(
       ":userId",
-      id,
+      String(id),
     );
 
     const data = await fetchWithCredentials(url);

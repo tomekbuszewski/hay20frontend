@@ -11,8 +11,17 @@ import { Form, PageTitle, Button, TransitionWrapper } from "@ui/Atoms";
 import { Input } from "@ui/Molecules";
 import { UserIcon, KeyIcon, AtIcon } from "@ui/Molecules";
 import { ROUTES } from "@config/routes";
+import { FORM_NAMES } from "@pages/Register/Register.typings";
 
-const View: React.FunctionComponent = () => {
+interface Props {
+  handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
+const View: React.FunctionComponent<Props> = ({
+  handleInput,
+  handleSubmit,
+}) => {
   const { push } = useHistory();
 
   return (
@@ -21,15 +30,20 @@ const View: React.FunctionComponent = () => {
         <title>Sign Up</title>
       </Helmet>
       <PageTitle>Sign Up</PageTitle>
-      <Form>
-        <Input icon={<UserIcon />} placeholder="Username" name="user" />
-        <Input icon={<AtIcon />} placeholder="E-mail" name="email" />
+      <Form onSubmit={handleSubmit}>
+        <Input
+          icon={<UserIcon />}
+          placeholder="Username"
+          name={FORM_NAMES.USER}
+          onChange={handleInput}
+        />
         <Input
           icon={<KeyIcon />}
           autoComplete="new-password"
           placeholder="Password"
           type="password"
-          name="password"
+          name={FORM_NAMES.PASS}
+          onChange={handleInput}
         />
         <div style={{ display: "flex" }}>
           <Button

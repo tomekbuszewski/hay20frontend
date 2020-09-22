@@ -6,4 +6,5 @@ export interface BaseProps extends HTMLAttributes<HTMLInputElement> {
   noMargin?: boolean;
   type?: string;
   autoComplete?: string;
+  value?: string;
 }

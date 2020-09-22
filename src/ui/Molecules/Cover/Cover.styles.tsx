@@ -4,11 +4,11 @@
  */
 
 import styled from "styled-components";
-import { colorGetter, constGetter } from "@ui/helpers";
+import { colorGetter, constGetter, rem } from "@ui/helpers";
 
 const StyledCover = styled.figure`
   border-radius: ${constGetter("borderRadius")};
-  background: ${colorGetter("background")};
+  background: conic-gradient(from 225deg at center, #23272a, #1d2224);
 
   margin: 0;
   padding: 0;
@@ -18,7 +18,8 @@ const StyledCover = styled.figure`
   overflow: hidden;
   position: relative;
 
-  > img {
+  > img,
+  > svg {
     top: 50%;
     left: 50%;
     position: absolute;
@@ -27,6 +28,11 @@ const StyledCover = styled.figure`
 
     width: ${constGetter("cover")};
     height: ${constGetter("cover")};
+  }
+
+  > svg {
+    width: ${rem(48)};
+    height: ${rem(48)};
   }
 `;
 

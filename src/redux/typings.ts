@@ -1,3 +1,9 @@
-import { reducers } from "@redux/reducers";
+import { UserReducer } from "@redux/user/typings";
+import { ListsReducer } from "@redux/lists/typings";
+import { AlbumsReducer } from "@redux/albums/typings";
 
-export type Reducers = typeof reducers;
+export type Reducers = {
+  user: UserReducer;
+  lists: ListsReducer;
+  albums: AlbumsReducer;
+};

@@ -141,6 +141,15 @@ const StyledButtonWrapper = styled.ul<{ isVisible?: boolean }>`
         `};
 `;
 
+const StyledAlbumWrapper = styled.li<{ isActive: boolean }>`
+  transition: ${transition(["padding"])};
+
+  list-style: none;
+
+  margin: 0 auto ${marginGetter("vertical")};
+  padding-top: ${({ isActive }) => (isActive ? 0 : "2rem")};
+`;
+
 const StyledAlbum = styled.li<ViewProps>`
   box-shadow: ${(props) => boxShadow(rgba(colorGetter("shadow")(props), 0.25))};
   border-radius: ${constGetter("borderRadius")};
@@ -156,14 +165,7 @@ const StyledAlbum = styled.li<ViewProps>`
   border-right-color: ${({ isListened }) =>
     isListened ? colorGetter("accentLight") : colorGetter("accentDark")};
 
-  margin: ${({ isActive }) =>
-    isActive
-      ? css`
-          ${marginGetter("vertical")} auto
-        `
-      : css`
-          ${marginGetter("vertical")} auto ${marginGetter("spacious")}
-        `};
+  margin: 0;
   padding: ${rem(16)};
   width: 100%;
   height: ${({ isActive }) => (isActive ? rem(152) : constGetter("cover"))};
@@ -173,6 +175,8 @@ const StyledAlbum = styled.li<ViewProps>`
     ["box-shadow", "height", "border", "transform", "margin"],
     "long",
   )};
+
+  cursor: pointer;
 
   ${({ isDragging }) =>
     isDragging &&
@@ -232,4 +236,5 @@ export {
   StyleAlbumMetaWrapper,
   StyledButtonWrapper,
   StyledToggler,
+  StyledAlbumWrapper,
 };
