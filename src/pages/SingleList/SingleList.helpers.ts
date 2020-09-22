@@ -21,8 +21,6 @@ export const useFetchAlbumsQuery = (
   enabled?: boolean,
 ) => {
   return useQuery(FETCH_ALBUMS_QUERY, () => fetchAlbumsQuery(params), {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
     enabled: enabled && params.length > 0,
     onSuccess: ({ payload }) => {
       success(payload);
@@ -38,8 +36,6 @@ export const useFetchDetailsQuery = (
     FETCH_LIST_DETAILS_QUERY,
     () => fetchListDetailsQuery(params),
     {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
       onSuccess: ({ payload }) => {
         success([payload]);
       },
@@ -55,6 +51,7 @@ export const useMetaQuery = (
   return useQuery(FETCH_META_QUERY, () => fetchMetaQuery(params), {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
+    retry: 2,
     enabled,
     onSuccess: (result) => {
       success && success(result);

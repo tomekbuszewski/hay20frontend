@@ -32,7 +32,6 @@ const useFetchList = (
 ) => {
   return useQuery(FETCH_ALL_LISTS_QUERY, fetchAllListsQuery, {
     retry: false,
-    refetchOnWindowFocus: false,
     onSuccess: async ({ payload }) => {
       if (payload.length > 0) {
         success(payload);
