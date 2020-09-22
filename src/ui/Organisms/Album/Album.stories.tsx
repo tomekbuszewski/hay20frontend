@@ -8,6 +8,7 @@ import { IAlbum } from "@ui/Organisms/Album/Album.types";
 
 export const Normal = () => (
   <Album
+    toggle={() => false}
     album={albums.TEST_ALBUM_1}
     view={{
       isListened: boolean("Listened", false),
@@ -30,6 +31,7 @@ export const List = () => (
       const album = albums[item] as IAlbum;
       return (
         <Album
+          toggle={() => false}
           key={i}
           album={album}
           list={{ listPosition: i + 1, listenOn: new Date() }}

@@ -4,7 +4,7 @@ import { Cover } from "./index";
 
 const storyConfig = {
   artist: "Sonic Youth",
-  album: "Rather Ripped",
+  title: "Rather Ripped",
 };
 
 export const WithCover = () => (

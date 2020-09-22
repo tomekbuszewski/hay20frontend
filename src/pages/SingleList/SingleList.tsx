@@ -177,6 +177,8 @@ const mapDispatch = {
   toggleListened: toggleListenState,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const ConnectedSingleList = connect(mapState, mapDispatch)(SingleList);
 
 export { ConnectedSingleList as SingleList };
