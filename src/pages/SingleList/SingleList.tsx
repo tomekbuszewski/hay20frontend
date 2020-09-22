@@ -7,7 +7,7 @@ import * as React from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation, useQueryCache } from "react-query";
 import { Reducers } from "@redux/typings";
 
 import {
@@ -33,6 +33,7 @@ import { reorderItemsMutation } from "@mutations/reorderItemsMutation";
 import { addAlbumMutation } from "@mutations/addAlbumMutation";
 import { addAlbumToListMutation } from "@mutations/addAlbumToListMutation";
 import { Loader } from "@ui/Molecules";
+import { FETCH_META_QUERY } from "@queries/fetchMetaQuery";
 
 const SingleList: React.FunctionComponent<Props> = ({
   addAlbums,
@@ -44,6 +45,8 @@ const SingleList: React.FunctionComponent<Props> = ({
   reorder,
   toggleListened,
 }) => {
+  const queryCache = useQueryCache();
+
   const [activeAlbum, setActiveAlbum] = React.useState(null);
   const [formVisible, setFormVisible] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -54,14 +57,14 @@ const SingleList: React.FunctionComponent<Props> = ({
   const [addAlbumToDbMutation] = useMutation(addAlbumMutation);
   const [addAlbumToListDbMutation] = useMutation(addAlbumToListMutation);
 
-  const { isLoading: isMetaLoading, data: metaResults } = useMetaQuery(
-    searchQuery,
-    canSearch,
-    () => {
-      setSearchQuery("");
-      setCanSearch(false);
-    },
-  );
+  const {
+    isFetching: isMetaFetching,
+    data: metaResults,
+    isError: isMetaError,
+  } = useMetaQuery(searchQuery, canSearch, () => {
+    setSearchQuery("");
+    setCanSearch(false);
+  });
 
   const { listIndex } = useParams<{ listIndex: string }>();
   const {
@@ -112,8 +115,11 @@ const SingleList: React.FunctionComponent<Props> = ({
     setSearchQuery(target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
+    await queryCache.invalidateQueries(FETCH_META_QUERY);
     setCanSearch(true);
   };
 
@@ -150,7 +156,7 @@ const SingleList: React.FunctionComponent<Props> = ({
         handleChange={handleInput}
         listVisible={formVisible}
         setListVisible={toggleForm}
-        isLoading={!isReady || isMetaLoading}
+        isLoading={!isMetaError && (!isReady || isMetaFetching)}
         albums={albums(listIndex)}
         listStart={listStart(listIndex)}
         activeAlbum={activeAlbum}

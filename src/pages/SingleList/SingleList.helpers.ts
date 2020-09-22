@@ -51,6 +51,7 @@ export const useMetaQuery = (
   return useQuery(FETCH_META_QUERY, () => fetchMetaQuery(params), {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
+    retry: 2,
     enabled,
     onSuccess: (result) => {
       success && success(result);
