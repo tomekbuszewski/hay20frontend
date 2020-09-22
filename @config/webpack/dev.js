@@ -1,3 +1,5 @@
+const Dotenv = require("dotenv-webpack");
+
 const path = require("path");
 const common = require("./common");
 
@@ -19,7 +21,12 @@ module.exports = {
   optimization: {
     ...common.optimization(false),
   },
-  plugins: [...common.plugins],
+  plugins: [
+    ...common.plugins,
+    new Dotenv({
+      path: "./.env.dev",
+    }),
+  ],
   devServer: {
     contentBase: path.join(__dirname, "..", "..", "public"),
     port: process.env.HMR_PORT || "8888",

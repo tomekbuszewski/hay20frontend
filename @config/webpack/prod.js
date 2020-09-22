@@ -1,3 +1,4 @@
+const Dotenv = require("dotenv-webpack");
 const Terser = require("terser-webpack-plugin");
 const common = require("./common");
 
@@ -24,5 +25,5 @@ module.exports = {
       }),
     ],
   },
-  plugins: [...common.plugins],
+  plugins: [...common.plugins, new Dotenv()],
 };
