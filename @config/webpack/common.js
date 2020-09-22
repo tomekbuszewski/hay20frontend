@@ -1,10 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const Dotenv = require("dotenv-webpack");
 
 const getPaths = require("../moduleAlias");
 
@@ -117,6 +117,13 @@ const plugins = [
 
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: "async",
+  }),
+
+  new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast
+    // and not allow any straggling "old" SWs to hang around
+    clientsClaim: true,
+    skipWaiting: true,
   }),
 ];
 
