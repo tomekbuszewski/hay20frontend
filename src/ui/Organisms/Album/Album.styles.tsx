@@ -224,10 +224,6 @@ const StyledAlbum = styled.li<ViewProps>`
         blur: rem(32),
       })};
   }
-
-  @media (min-width: ${rem(480)}) {
-    max-width: ${rem(360)};
-  }
 `;
 
 export {
