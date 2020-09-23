@@ -17,8 +17,10 @@
     "~~~~~~ BUILD COMMANDS ~~~~~~": "",
     "assets": "cp ./assets/* ./public/assets",
     "manifest": "cp ./manifest.json ./public",
-    "build:dev": "NODE_ENV=development webpack",
-    "build:prod": "npm run clear-public; NODE_ENV=production webpack --mode=production && npm run assets && npm run manifest",
+    "sw": "cp ./public/assets/service-worker.js ./public/; cp ./public/assets/workbox-*.js ./public/",
+    "after-build": "npm run assets && npm run manifest && npm run sw",
+    "build:dev": "NODE_ENV=development webpack && npm run after-build",
+    "build:prod": "npm run clear-public; NODE_ENV=production webpack --mode=production && npm run after-build",
     "~~~~~~ DEPLOY COMMANDS ~~~~~~": "",
     "deploy:dev": "surge ./public https://hay-dev.surge.sh",
     "deploy:prod": "surge ./public https://hay.surge.sh"
