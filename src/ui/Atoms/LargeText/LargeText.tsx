@@ -3,7 +3,6 @@
  * @since 2020-09-16 18:36:38
  */
 
-import * as React from "react";
 import styled from "styled-components";
 import { ellipsis } from "polished";
 
@@ -20,7 +19,7 @@ const LargeText = styled.h2<{
 
   margin: 0;
 
-  ${({ withEllipsis }) => withEllipsis && ellipsis(rem(172))};
+  ${({ withEllipsis }) => withEllipsis && ellipsis(rem(156))};
 `;
 
 export { LargeText };
