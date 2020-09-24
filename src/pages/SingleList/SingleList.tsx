@@ -8,6 +8,8 @@ import { DropResult } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryCache } from "react-query";
+import { animateScroll as scroll } from "react-scroll";
+
 import { Reducers } from "@redux/typings";
 
 import {
@@ -143,6 +145,7 @@ const SingleList: React.FunctionComponent<Props> = ({
       });
 
       toggleForm();
+      scroll.scrollToBottom();
     }
   };
 
