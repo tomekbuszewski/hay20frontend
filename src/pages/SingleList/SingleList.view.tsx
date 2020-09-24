@@ -6,6 +6,7 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { scroller, Element } from "react-scroll";
 
 import { TransitionWrapper } from "@ui/Atoms";
 import { Loader } from "@ui/Molecules";
@@ -13,6 +14,13 @@ import { Album, AddAlbum } from "@ui/Organisms";
 import { StyledAlbumWrapper } from "@ui/Organisms/Album/Album.styles";
 import { isToday } from "@services/isToday";
 import { ViewProps as Props } from "@pages/SingleList/SingleList.typings";
+
+const formatDate = (input: Date): string => {
+  return input.toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "2-digit",
+  });
+};
 
 const View: React.FunctionComponent<Props> = ({
   activeAlbum,
@@ -33,6 +41,15 @@ const View: React.FunctionComponent<Props> = ({
   if (isLoading) {
     return <Loader />;
   }
+
+  React.useEffect(() => {
+    const today = formatDate(new Date());
+
+    scroller.scrollTo(today, {
+      duration: 400,
+      offset: -32,
+    });
+  }, []);
 
   return (
     <TransitionWrapper>
@@ -81,19 +98,21 @@ const View: React.FunctionComponent<Props> = ({
                         {...provided.dragHandleProps}
                         style={provided.draggableProps.style}
                       >
-                        <Album
-                          as="article"
-                          album={item}
-                          toggle={toggleAlbum}
-                          view={{
-                            isActive: activeAlbum === id,
-                            isToday: isToday(listenOn),
-                            isListened: item.listened,
-                            isDragging,
-                          }}
-                          list={{ listenOn, listPosition: item.order }}
-                          onClick={setAsActive}
-                        />
+                        <Element name={formatDate(listenOn)}>
+                          <Album
+                            as="article"
+                            album={item}
+                            toggle={toggleAlbum}
+                            view={{
+                              isActive: activeAlbum === id,
+                              isToday: isToday(listenOn),
+                              isListened: item.listened,
+                              isDragging,
+                            }}
+                            list={{ listenOn, listPosition: item.order }}
+                            onClick={setAsActive}
+                          />
+                        </Element>
                       </StyledAlbumWrapper>
                     )}
                   </Draggable>
