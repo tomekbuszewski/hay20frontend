@@ -63,10 +63,18 @@ const SingleList: React.FunctionComponent<Props> = ({
     isFetching: isMetaFetching,
     data: metaResults,
     isError: isMetaError,
-  } = useMetaQuery(searchQuery, canSearch, () => {
-    setSearchQuery("");
-    setCanSearch(false);
-  });
+  } = useMetaQuery(
+    searchQuery,
+    canSearch,
+    () => {
+      setSearchQuery("");
+      setCanSearch(false);
+    },
+    () => {
+      setSearchQuery("");
+      setCanSearch(false);
+    },
+  );
 
   const { listIndex } = useParams<{ listIndex: string }>();
   const {
@@ -130,8 +138,6 @@ const SingleList: React.FunctionComponent<Props> = ({
   const pushAlbum = async () => {
     if (metaResults) {
       const { payload: album } = await addAlbumToDbMutation(metaResults);
-
-      console.log(album);
 
       addAlbums([album]);
       const { payload: list } = await addAlbumToListDbMutation({
