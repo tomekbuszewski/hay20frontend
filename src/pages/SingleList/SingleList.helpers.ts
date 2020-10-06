@@ -47,6 +47,7 @@ export const useMetaQuery = (
   params: string,
   enabled?: boolean,
   success?: (input: IAlbum) => void,
+  failure?: () => void,
 ) => {
   return useQuery(FETCH_META_QUERY, () => fetchMetaQuery(params), {
     refetchOnWindowFocus: false,
@@ -56,5 +57,6 @@ export const useMetaQuery = (
     onSuccess: (result) => {
       success && success(result);
     },
+    onError: failure,
   });
 };
