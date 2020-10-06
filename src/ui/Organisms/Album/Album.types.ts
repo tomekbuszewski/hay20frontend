@@ -1,7 +1,6 @@
 import { HTMLAttributes } from "react";
 
 export interface IAlbum {
-  id: number | string;
   artist: string;
   title: string;
   rym?: string;
